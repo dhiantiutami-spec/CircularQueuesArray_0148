@@ -16,30 +16,37 @@ public:
     }
 
     void insert()
+{
+    int num;
+
+    cout << "Enter a number : ";
+    cin >> num;
+    cout << endl;
+
+    // cek apakah antrian penuh
+    if ((FRONT == 0 && REAR == max - 1) || (FRONT == REAR + 1))
     {
-        int num;
-
-        cout << "Enter a number : ";
-        cin >> num;
-        cout << endl;
-        
-        // cek apakah antrian penuh
-        if ((FRONT == 0 && REAR == max - 1) || (FRONT == REAR + 1))
-        {
-            cout << "Queue overflow";
-            return;
-        }
-          else
-        {
-            // jika rear berada di posisi terakhir array, kembali ke awal array
-            if (REAR == max - 1)
-                REAR = 0;
-            else
-                REAR = REAR + 1;
-        }
-
-        queue_array[REAR] = num;
+        cout << "Queue overflow";
+        return;
     }
+
+    // cek apakah antrian kosong
+    if (FRONT == -1)
+    {
+        FRONT = 0;
+        REAR = 0;
+    }
+    else
+    {
+        // jika rear berada di posisi terakhir array, kembali ke awal array
+        if (REAR == max - 1)
+            REAR = 0;
+        else
+            REAR = REAR + 1;
+    }
+
+    queue_array[REAR] = num;
+}
 
     void remove()
     {
@@ -161,7 +168,7 @@ int main()
                 return 0;
             }
 
-           default:
+            default:
             {
                 cout << "Invalid option!!!" << endl;
                 break;
